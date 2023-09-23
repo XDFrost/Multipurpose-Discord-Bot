@@ -3,7 +3,6 @@ from discord.ext import commands
 from datetime import datetime
 
 
-
 col = discord.Color.blue()
 
 async def is_owner(ctx):

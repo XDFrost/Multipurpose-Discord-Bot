@@ -17,7 +17,7 @@ async def on_command_error(ctx, error):
     else:
         await ctx.send(f"```Error occured during execution\n\nFor more info on a specific command, use {'*help*'} command```")
         raise error
-        
+
 # * -------------------------------------------------------------------
 
 @bot.event                                   # Bot decorator telling it is an event 
@@ -30,6 +30,21 @@ async def on_ready():
         if cmd_file != "__init__.py":
             await bot.load_extension(f"cogs.{cmd_file.stem}")                      # .stem provides file name without extension
             
+# @bot.event
+# async def on_ready():
+#     print(bot.user)
+#     print(bot.user.id)
+#     print("____________________________________________________________")
+    
+#     # Load cogs after the bot is ready
+#     for cmd_file in settings.cmds.glob("*.py"):
+#         if cmd_file.name != "__init__.py":
+#             try:
+#                 bot.load_extension(f"cogs.{cmd_file.stem}")
+#                 print(f"Loaded extension: cogs.{cmd_file.stem}")
+#             except Exception as e:
+#                 print(f"Failed to load extension: cogs.{cmd_file.stem}\n{e}")
+
 # * -------------------------------------------------------------------   
 
 @bot.command (
