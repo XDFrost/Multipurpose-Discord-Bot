@@ -1264,7 +1264,7 @@ int main() {
 
 # * -------------------------------------------------------------------
 
-    @stack.command()
+    @stack.command() 
     async def reverse(self, ctx, language):
         if(language == "python"):
             ans = """class Stack:
@@ -1437,7 +1437,7 @@ int main() {
     return 0;
 }
 """
-                    
+
         await ctx.send(f"```{ans}```")
 
 # * -------------------------------------------------------------------

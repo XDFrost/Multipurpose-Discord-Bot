@@ -29,33 +29,18 @@ async def on_ready():
     for cmd_file in settings.cmds.glob("*.py"):                                   # yields all existing files of specified type
         if cmd_file != "__init__.py":
             await bot.load_extension(f"cogs.{cmd_file.stem}")                      # .stem provides file name without extension
-            
-# @bot.event
-# async def on_ready():
-#     print(bot.user)
-#     print(bot.user.id)
-#     print("____________________________________________________________")
-    
-#     # Load cogs after the bot is ready
-#     for cmd_file in settings.cmds.glob("*.py"):
-#         if cmd_file.name != "__init__.py":
-#             try:
-#                 bot.load_extension(f"cogs.{cmd_file.stem}")
-#                 print(f"Loaded extension: cogs.{cmd_file.stem}")
-#             except Exception as e:
-#                 print(f"Failed to load extension: cogs.{cmd_file.stem}\n{e}")
 
 # * -------------------------------------------------------------------   
 
-@bot.command (
-    aliases = ['p'],                           
-    help = "This is help",                    # Shows on help menu
-    description = "This is Description",      # Shows on command description menu title
-    brief = "This is brief",                  # Shows on command description menu
-    enabled = True                            # Tells if the command is enabled or not
-)
-async def ping(ctx):                         # ctx refers to the context like message, channel etc..
-    await ctx.send("PONG")
+# @bot.command (
+#     aliases = ['p'],                           
+#     help = "This is help",                    # Shows on help menu
+#     description = "This is Description",      # Shows on command description menu title
+#     brief = "This is brief",                  # Shows on command description menu
+#     enabled = True                            # Tells if the command is enabled or not
+# )
+# async def ping(ctx):                         # ctx refers to the context like message, channel etc..
+#     await ctx.send("PONG")
 
 # * -------------------------------------------------------------------
 

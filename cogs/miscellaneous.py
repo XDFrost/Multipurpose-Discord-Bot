@@ -14,14 +14,18 @@ class Miscellaneous(commands.Cog):
         
         
     @commands.command ()
-    async def invite(self, ctx, who : discord.Member):
-        joined_at = who.joined_at.strftime("%Y-%m-%d at %H:%M")
+    async def invite(self, ctx):
+        a = "__frostxd"
         embed = discord.Embed(
             colour=col,
-            title=f"{who.display_name} joined at {joined_at}"                        # display_name displays the server name of the author not their tag name   
+            description=f"""Hello. I am **Logic Link**, a multipurpose bot built by **{a}**.
+            You can add me to your server with the link below:
+            
+            [Click to add me in your server!](https://discord.com/api/oauth2/authorize?client_id=1154012892258115606&permissions=8&scope=bot)"""
         )
         
         embed.set_author(name = ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        embed.set_thumbnail(url="https://i.imgur.com/ggG1PXy.png")
         
         await ctx.send(embed = embed)                  
           
