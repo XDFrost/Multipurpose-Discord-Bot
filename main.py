@@ -1,13 +1,19 @@
 import settings
 import discord
 from discord.ext import commands
+import json
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
+
+def get_server_prefix(bot, message):
+        with open("prefixes.json", "r") as f:
+            prefix = json.load(f)
+        return prefix[str(message.guild.id)]
+
+bot = commands.Bot(command_prefix=get_server_prefix, intents=intents)
 
 
 # * -------------------------------------------------------------------
-
 
 # Handling error            
 @bot.event
@@ -32,15 +38,26 @@ async def on_ready():
 
 # * -------------------------------------------------------------------   
 
-# @bot.command (
-#     aliases = ['p'],                           
-#     help = "This is help",                    # Shows on help menu
-#     description = "This is Description",      # Shows on command description menu title
-#     brief = "This is brief",                  # Shows on command description menu
-#     enabled = True                            # Tells if the command is enabled or not
-# )
-# async def ping(ctx):                         # ctx refers to the context like message, channel etc..
-#     await ctx.send("PONG")
+    @bot.event
+    async def on_guild_join(guild):
+        with open("prefixes.json", "r") as f:
+            prefix = json.load(f)
+            
+        prefix[str(guild.id)] = "!"
+        
+        with open("prefixes.json", "w") as f:
+            json.dump(prefix, f, indent = 4)
+            
+            
+    @bot.event
+    async def on_guild_remove(guild):
+        with open("prefixes.json", "r") as f:
+            prefix = json.load(f)
+            
+        prefix.pop(str(guild.id))
+        
+        with open("prefixes.json", "w") as f:
+            json.dump(prefix, f, indent = 4)
 
 # * -------------------------------------------------------------------
 

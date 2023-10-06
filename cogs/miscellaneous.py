@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from datetime import datetime
+import json
 
 
 col = discord.Color.blue()
@@ -29,6 +30,18 @@ class Miscellaneous(commands.Cog):
         
         await ctx.send(embed = embed)                  
           
+# * -------------------------------------------------------------------   
+
+    @commands.command()
+    async def setprefix(self, ctx, *, newprefix: str):
+        with open("prefixes.json", "r") as f:
+            prefix = json.load(f)
+        
+        prefix[str(ctx.guild.id)] = newprefix
+        
+        with open("prefixes.json", "w") as f:
+            json.dump(prefix, f, indent=4)
+     
 # * -------------------------------------------------------------------   
         
     @commands.command ()
