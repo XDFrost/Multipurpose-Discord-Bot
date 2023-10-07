@@ -14,6 +14,8 @@ bot = commands.Bot(command_prefix=get_server_prefix, intents=intents)
 
 
 # * -------------------------------------------------------------------
+# * -------------------------------------------------------------------
+
 
 # Handling error            
 @bot.event
@@ -24,7 +26,10 @@ async def on_command_error(ctx, error):
         await ctx.send(f"```Error occured during execution\n\nFor more info on a specific command, use {'*help*'} command```")
         raise error
 
+
 # * -------------------------------------------------------------------
+# * -------------------------------------------------------------------
+
 
 @bot.event                                   # Bot decorator telling it is an event 
 async def on_ready():
@@ -36,29 +41,48 @@ async def on_ready():
         if cmd_file != "__init__.py":
             await bot.load_extension(f"cogs.{cmd_file.stem}")                      # .stem provides file name without extension
 
+
 # * -------------------------------------------------------------------   
+# * -------------------------------------------------------------------   
+
 
     @bot.event
     async def on_guild_join(guild):
+# * -------------------------------------------------------------------   
         with open("prefixes.json", "r") as f:
             prefix = json.load(f)
-            
         prefix[str(guild.id)] = "!"
-        
         with open("prefixes.json", "w") as f:
             json.dump(prefix, f, indent = 4)
+# * -------------------------------------------------------------------   
+        with open("mutes.json", "r") as f:
+            mute_role = json.load(f)
+            mute_role[str(guild.id)] = None
+        with open("mutes.json", "w") as f:
+            json.dump(mute_role, f, indent = 4)
             
             
+# * -------------------------------------------------------------------
+# * -------------------------------------------------------------------
+
+
     @bot.event
     async def on_guild_remove(guild):
+# * -------------------------------------------------------------------  
         with open("prefixes.json", "r") as f:
             prefix = json.load(f)
-            
         prefix.pop(str(guild.id))
-        
         with open("prefixes.json", "w") as f:
             json.dump(prefix, f, indent = 4)
-
+# * -------------------------------------------------------------------   
+        with open("mutes.json", "r") as f:
+            mute_role = json.load(f)
+            mute_role.pop(str(guild.id))
+        with open("mutes.json", "w") as f:
+            json.dump(mute_role, f, indent = 4)
+            
+            
+# * -------------------------------------------------------------------
 # * -------------------------------------------------------------------
 
 if __name__ == "__main__":
