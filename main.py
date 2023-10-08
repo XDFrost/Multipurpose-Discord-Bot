@@ -6,7 +6,7 @@ import json
 intents = discord.Intents.all()
 
 def get_server_prefix(bot, message):
-        with open("prefixes.json", "r") as f:
+        with open("cogs/json/prefixes.json", "r") as f:
             prefix = json.load(f)
         return prefix[str(message.guild.id)]
 
@@ -49,36 +49,36 @@ async def on_ready():
     @bot.event
     async def on_guild_join(guild):
 # * -------------------------------------------------------------------   
-        with open("prefixes.json", "r") as f:
+        with open("cogs/json/prefixes.json", "r") as f:
             prefix = json.load(f)
         prefix[str(guild.id)] = "!"
         with open("prefixes.json", "w") as f:
             json.dump(prefix, f, indent = 4)
 # * -------------------------------------------------------------------   
-        with open("mutes.json", "r") as f:
+        with open("cogs/json/mutes.json", "r") as f:
             mute_role = json.load(f)
             mute_role[str(guild.id)] = None
-        with open("mutes.json", "w") as f:
+        with open("cogs/json/mutes.json", "w") as f:
             json.dump(mute_role, f, indent = 4)
             
             
-# * -------------------------------------------------------------------
+# * -------------------------------------------------------- -----------
 # * -------------------------------------------------------------------
 
 
     @bot.event
     async def on_guild_remove(guild):
 # * -------------------------------------------------------------------  
-        with open("prefixes.json", "r") as f:
+        with open("cogs/json/prefixes.json", "r") as f:
             prefix = json.load(f)
         prefix.pop(str(guild.id))
-        with open("prefixes.json", "w") as f:
+        with open("cogs/json/prefixes.json", "w") as f:
             json.dump(prefix, f, indent = 4)
 # * -------------------------------------------------------------------   
-        with open("mutes.json", "r") as f:
+        with open("cogs/json/mutes.json", "r") as f:
             mute_role = json.load(f)
             mute_role.pop(str(guild.id))
-        with open("mutes.json", "w") as f:
+        with open("cogs/json/mutes.json", "w") as f:
             json.dump(mute_role, f, indent = 4)
             
             

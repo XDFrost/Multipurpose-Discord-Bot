@@ -34,12 +34,12 @@ class Miscellaneous(commands.Cog):
 
     @commands.command()
     async def setprefix(self, ctx, *, newprefix: str):
-        with open("prefixes.json", "r") as f:
+        with open("cogs/json/prefixes.json", "r") as f:
             prefix = json.load(f)
         
         prefix[str(ctx.guild.id)] = newprefix
         
-        with open("prefixes.json", "w") as f:
+        with open("cogs/json/prefixes.json", "w") as f:
             json.dump(prefix, f, indent=4)
      
 # * -------------------------------------------------------------------   

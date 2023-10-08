@@ -75,10 +75,10 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(administrator = True)
     async def setmuterole(self, ctx, role: discord.Role):
-        with open("mutes.json", "r") as f:
+        with open("cogs/json/mutes.json", "r") as f:
             mute_role = json.load(f)
             mute_role[str(ctx.guild.id)] = role.name
-        with open("mutes.json", "w") as f:
+        with open("cogs/json/mutes.json", "w") as f:
             json.dump(mute_role, f, indent = 4)
             
         conf_embed = discord.Embed(
@@ -93,7 +93,7 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_roles = True)
     async def mute(self, ctx, member: discord.Member):
-        with open("mutes.json", "r") as f:
+        with open("cogs/json/mutes.json", "r") as f:
             role = json.load(f)
             mute_role = discord.utils.get(ctx.guild.roles, name = role[str(ctx.guild.id)])            # Getting guild roles from person that ran the command and looking for name of the role that matches the name in json file
 
@@ -110,7 +110,7 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_roles = True)
     async def unmute(self, ctx, member: discord.Member):
-        with open("mutes.json", "r") as f:
+        with open("cogs/json/mutes.json", "r") as f:
             role = json.load(f)
             mute_role = discord.utils.get(ctx.guild.roles, name = role[str(ctx.guild.id)])            # Getting guild roles from person that ran the command and looking for name of the role that matches the name in json file
 
