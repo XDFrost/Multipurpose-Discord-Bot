@@ -3,7 +3,7 @@ import discord
 from dispie import Paginator                   # Used for changing content pages 
 
 
-col = discord.Color.blue()
+col = discord.Color.purple()
 
 
 class DSA_visualizer(commands.Cog):

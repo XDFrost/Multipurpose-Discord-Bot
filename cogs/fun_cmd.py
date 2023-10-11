@@ -4,7 +4,7 @@ import random
 
 # Cogs are used to make categories
 
-col = discord.Color.blue()
+col = discord.Color.purple()
 
 class Actions(commands.Cog):
     

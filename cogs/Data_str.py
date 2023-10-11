@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-col = discord.Color.blue()
+col = discord.Color.purple()
 
 
 class DSA(commands.Cog):

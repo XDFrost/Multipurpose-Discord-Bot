@@ -4,6 +4,7 @@ from discord.ext import commands
 import json
 
 
+col = discord.Color.purple()
 timeout = 10
 
 class Moderation(commands.Cog):
@@ -16,7 +17,7 @@ class Moderation(commands.Cog):
     @commands.has_permissions(manage_messages = True)
     async def purge(self, ctx, count: int):
         await ctx.channel.purge(limit = count+1)
-        embed = discord.Embed(title=f"{count} message(s) have been deleted", color=discord.Color.blue())
+        embed = discord.Embed(title=f"{count} message(s) have been deleted", color=col)
         embed.set_author(name = ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
         
         message = await ctx.send(embed = embed)
@@ -32,7 +33,7 @@ class Moderation(commands.Cog):
         await ctx.guild.kick(member)
         conf_embed = discord.Embed(
             title=f"Success!",
-            color=discord.Color.blue()
+            color=col
         )
         conf_embed.add_field(name="Kicked", value=f"{member.mention} has been kicked from the server by {ctx.author.mention}", inline=False)
         conf_embed.add_field(name="Reason", value=modreason, inline=False)   
@@ -47,7 +48,7 @@ class Moderation(commands.Cog):
         await ctx.guild.ban(member)
         conf_embed = discord.Embed(
             title=f"Success!",
-            color=discord.Color.blue()
+            color=col
         )
         conf_embed.add_field(name="Banned", value=f"{member.mention} has been banned from the server by {ctx.author.mention}", inline=False)
         conf_embed.add_field(name="Reason", value=modreason, inline=False)   
@@ -65,7 +66,7 @@ class Moderation(commands.Cog):
         
         conf_embed = discord.Embed(
             title=f"Success!",
-            color=discord.Color.blue()
+            color=col
         )
         conf_embed.add_field(name="Unbanned", value=f"<@{userId}> has been unbanned from the server by {ctx.author.mention}", inline=False)
         await ctx.send(embed = conf_embed)   
@@ -83,7 +84,7 @@ class Moderation(commands.Cog):
             
         conf_embed = discord.Embed(
             title=f"Success!",
-            color=discord.Color.blue()
+            color=col
         )
         conf_embed.add_field(name="Mute role has been set", value=f"The mute role has been changed to `{role.mention}` for this guild. All members equiped with this role will be muted!", inline=False)
         await ctx.send(embed = conf_embed)
@@ -100,7 +101,7 @@ class Moderation(commands.Cog):
         await member.add_roles(mute_role)
         conf_embed = discord.Embed(
             title=f"Success!",
-            color=discord.Color.blue()
+            color=col
         )
         conf_embed.add_field(name="Muted", value=f"{member.mention} has been muted by {ctx.author.mention}.", inline=False)
         await ctx.send(embed = conf_embed)
@@ -117,7 +118,7 @@ class Moderation(commands.Cog):
         await member.remove_roles(mute_role)
         conf_embed = discord.Embed(
             title=f"Success!",
-            color=discord.Color.blue()
+            color=col
         )
         conf_embed.add_field(name="Unmuted", value=f"{member.mention} has been unmuted by {ctx.author.mention}.", inline=False)
         await ctx.send(embed = conf_embed)

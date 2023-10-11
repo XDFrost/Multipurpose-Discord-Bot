@@ -4,6 +4,7 @@ import json
 import asyncio
 import math
 
+col = discord.Color.purple()
 
 class LevelSystem(commands.Cog):
     def __init__(self, bot):
@@ -49,7 +50,7 @@ class LevelSystem(commands.Cog):
         self.users[author_id]["Experience"] += xp
         
         if self.level_up(author_id):
-            level_up_embed = discord.Embed( title = "Woohoo - Leveled Up!", color=discord.Color.blue())
+            level_up_embed = discord.Embed( title = "Woohoo - Leveled Up!", color=col)
             level_up_embed.set_author(name = message.author.display_name, icon_url=message.author.display_avatar.url)
             level_up_embed.add_field(name = "Congratulations", value=f"{message.author.mention} has leveled up to level `{self.users[author_id]['Level']}` !")
         
@@ -67,7 +68,7 @@ class LevelSystem(commands.Cog):
         elif user is not None:
             user = user
             
-        level_card = discord.Embed(title=f"{user.name}'s Level and Experience", color = discord.Color.blue())
+        level_card = discord.Embed(title=f"{user.name}'s Level and Experience", color = col)
         level_card.add_field(name = "Level: ", value=self.users[str(user.id)]["Level"])
         level_card.add_field(name = "Experience: ", value=self.users[str(user.id)]["Experience"])
         level_card.set_footer(text=f"Requested by {ctx.author.name}")

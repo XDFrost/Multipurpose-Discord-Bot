@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 
 
-col = discord.Color.blue()
+col = discord.Color.purple()
 
 async def is_owner(ctx):
     return ctx.author.id == ctx.guild.owner.id

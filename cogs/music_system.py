@@ -5,7 +5,7 @@ import wavelink             # fully asynchronous API that's intuitive and easy t
 
 
 
-col = discord.Color.blue()
+col = discord.Color.purple()
 
 class Music(commands.Cog):
     node = None
@@ -50,11 +50,31 @@ class Music(commands.Cog):
     @commands.Cog.listener()             
     async def on_wavelink_track_end(self, payload):
         if payload.track == self.current_trek: return
+        
+        if not self.vc.queue.is_empty:
+            next_track = self.vc.queue.get()
+            self.current_track = next_track
+            await self.vc.play(next_track)    
+              
         embed = discord.Embed(
             description=f"{self.vc.queue.get()} ended",
             color = col
         )
         await self.music_channel.send(embed = embed)
+
+# * -------------------------------------------------------------------   
+
+    @commands.Cog.listener()
+    async def on_voice_state_update(self, member, before, after):
+        # Check if the bot is in a voice channel
+        if self.vc and self.vc.is_connected():
+            # Check if the bot's voice channel became empty (excluding the bot)
+            if len([m for m in self.vc.channel.members if not m.bot]) == 0:
+                await self.vc.disconnect()
+                embed = discord.Embed(title="Insufficient user count", description="I have left the voice channel", color=col)
+                await self.music_channel.send(embed = embed)
+                self.current_trek = None
+                self.now_playing_message = None  # Reset the now playing message
 
 # * -------------------------------------------------------------------   
     
@@ -107,8 +127,34 @@ class Music(commands.Cog):
         if self.current_trek and self.vc:
             self.current_trek = self.vc.queue.get()
             await self.vc.play(self.current_trek)
+        if self.vc.queue.is_empty:
+            embed = discord.Embed(
+                description = f"Song queue is Empty!",
+                color=col
+            )
+            await ctx.send(embed = embed)
 
 # * -------------------------------------------------------------------   
+
+    @commands.command()
+    async def List(self, ctx):
+        if self.vc.queue.is_empty:
+            embed = discord.Embed(
+                description="The queue is currently empty.",
+                color=col
+            )
+        else:
+            queue_list = "\n".join([f"{i+1}. {track}" for i, track in enumerate(self.vc.queue)])
+            embed = discord.Embed(
+                title="Song Queue",
+                description=queue_list,
+                color=col
+            )
+            embed.set_footer(text=f"Requested by {ctx.author.display_name}")
+
+        await ctx.send(embed=embed)
+
+# * -------------------------------------------------------------------    
 
     @commands.command()
     async def skip(self, ctx):
@@ -127,12 +173,18 @@ class Music(commands.Cog):
 
     @commands.command()
     async def pause(self, ctx):
+        embed = discord.Embed(color=col)
+        embed.set_author(name=f"Paused the song.", icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)
         await self.vc.pause()
 
 # * -------------------------------------------------------------------   
 
     @commands.command()
     async def resume(self, ctx):
+        embed = discord.Embed(color=col)
+        embed.set_author(name=f"Resumed the song.", icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)
         await self.vc.resume()
 
 # * -------------------------------------------------------------------   
