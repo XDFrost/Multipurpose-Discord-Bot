@@ -4,7 +4,10 @@ from discord.ext import commands
 import json
 import database
 from models.account import Account
+from cogs.economy import Economy
 
+
+col = discord.Color.purple()
 database.db.create_tables([Account])
 intents = discord.Intents.all()
 
@@ -25,6 +28,15 @@ bot = commands.Bot(command_prefix=get_server_prefix, intents=intents)
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):                                # isinstance checks if the error is caused by the provided reason or not
         await ctx.send(f"```Error: Arguments are not provided \n\nFor more info on a specific command, use {'*help*'} command```")
+    elif isinstance(error, commands.CommandOnCooldown):
+        remaining_time = divmod(error.retry_after, 60)                  # retry_after contains the remaining time in seconds that we are getting in minutes by dividing them by 60
+        remaining_time_str = f"{int(remaining_time[0])} minutes"
+        embed = discord.Embed(
+            title="Your shift is over!",
+            description=f"You can work again after **{remaining_time_str}**",
+            color=col
+        )
+        await ctx.send(embed=embed)
     else:
         await ctx.send(f"```Error occured during execution\n\nFor more info on a specific command, use {'*help*'} command```")
         raise error
