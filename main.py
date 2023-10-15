@@ -2,7 +2,10 @@ import settings
 import discord
 from discord.ext import commands
 import json
+import database
+from models.account import Account
 
+database.db.create_tables([Account])
 intents = discord.Intents.all()
 
 def get_server_prefix(bot, message):
