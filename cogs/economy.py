@@ -144,6 +144,53 @@ class Economy(commands.Cog):
         embed.set_thumbnail(url = ctx.author.display_avatar.url)
         await ctx.send(embed = embed)
         
+# * -------------------------------------------------------------------  
+
+    @commands.command()
+    async def steal(self, ctx, member: discord.Member):
+        account_user = Account.fetch(ctx.message)
+        account_member = Account.fetch(member)
+        steal_probability = random.choice([0,1])
+        
+        if steal_probability == 1:          # User gets to steal
+            val = 0.8 * float(account_member.amount)
+            robbed = random.randrange(1, int(val))
+            
+            account_user.amount += robbed
+            account_member.amount -= robbed
+            account_user.save()
+            account_member.save()
+            
+            embed = discord.Embed(
+            title="Success!",
+            description="You had a successful robbery!",
+            color=discord.Color.green()
+            )
+            embed.add_field(name="Earnings:", value=f"**{robbed}**", inline=False)
+            embed.add_field(name="New Balance:", value=f"**{account_user.amount}**")
+            embed.set_footer(text="Want more?.. Wait 1 hour to run this command again, or try some other commands!")
+            embed.set_thumbnail(url = ctx.author.display_avatar.url)
+            await ctx.send(embed = embed)
+            
+        elif steal_probability == 0:
+            val = 0.3 * float(account_user.amount)
+            caught = random.randrange(0, int(val))
+            
+            account_user.amount -= caught
+            account_user.save()
+            
+            embed = discord.Embed(
+            title="Uh oh!",
+            description="You got caught while stealing and are now forced to pay back to member!",
+            color=discord.Color.red()
+            )
+            embed.add_field(name="Penalities:", value=f"**{caught}**", inline=False)
+            embed.add_field(name="New Balance:", value=f"**{account_user.amount}**")
+            embed.set_footer(text="Better luck next time I guess")
+            embed.set_thumbnail(url = ctx.author.display_avatar.url)
+            await ctx.send(embed = embed)
+
+    
 # * -------------------------------------------------------------------   
         
         
