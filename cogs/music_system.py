@@ -136,7 +136,7 @@ class Music(commands.Cog):
 
 # * -------------------------------------------------------------------   
 
-    @commands.command()
+    @commands.command(aliases = ["q"])
     async def List(self, ctx):
         if self.vc.queue.is_empty:
             embed = discord.Embed(
@@ -209,7 +209,7 @@ class Music(commands.Cog):
   
 # * -------------------------------------------------------------------   
 
-    @commands.command()
+    @commands.command(aliases = ["vol"])
     async def volume(self, ctx, new_vol : int):
         await self.vc.set_volume(new_vol)
 

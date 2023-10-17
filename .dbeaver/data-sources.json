@@ -1,7 +1,7 @@
 {
 	"folders": {},
 	"connections": {
-		"sqlite_jdbc-18b3311ef13-239d3e54826cf0ba": {
+		"sqlite_jdbc-18b3ef49daf-6e0a3d2013a60f20": {
 			"provider": "sqlite",
 			"driver": "sqlite_jdbc",
 			"name": "economy.db",

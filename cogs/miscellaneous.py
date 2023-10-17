@@ -32,7 +32,7 @@ class Miscellaneous(commands.Cog):
           
 # * -------------------------------------------------------------------   
 
-    @commands.command()
+    @commands.command(aliases = ["sp"])
     async def setprefix(self, ctx, *, newprefix: str):
         with open("cogs/json/prefixes.json", "r") as f:
             prefix = json.load(f)
