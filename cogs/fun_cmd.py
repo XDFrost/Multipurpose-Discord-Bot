@@ -53,7 +53,7 @@ class Actions(commands.Cog):
         
 # * -------------------------------------------------------------------   
 
-    @fun.command (aliases = ['s'])
+    @fun.command ()
     async def say(self, ctx, *what):
         embed = discord.Embed(
             colour=col,

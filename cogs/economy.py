@@ -38,7 +38,7 @@ class Economy(commands.Cog):
             embed = discord.Embed(
                 title=f"**{ctx.author.display_name}** has won the coin flip ^o^!",
                 description=f"Your current balance: {account.cash}",
-                color=col
+                color=discord.Color.green()
             )
             embed.set_author(name='Coin Flip')
             embed.set_footer(text = "This command doesn't have any cooldown")
@@ -47,7 +47,7 @@ class Economy(commands.Cog):
             embed = discord.Embed(
                 title=f"**{ctx.author.display_name}** just lost the coin flip... :c!",
                 description=f"Your current balance: {account.cash}",
-                color=col
+                color=discord.Color.red()
             )
             embed.set_author(name='Coin Flip')
             embed.set_footer(text = "This command doesn't have any cooldown")
@@ -289,9 +289,13 @@ class Economy(commands.Cog):
 
 # * -------------------------------------------------------------------   
 
+    @commands.cooldown(1, per=86400)
     @commands.command()
     async def daily(self, ctx):
         account = Account.fetch(ctx.author)
+        
+        
+        
         daily_coins_prev = ((account.daily_days - 1) * 250) / 5
         daily_coins = (account.daily_days * 250) / 5
         account.cash += daily_coins

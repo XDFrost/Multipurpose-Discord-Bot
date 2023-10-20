@@ -974,6 +974,352 @@ int main() {
 # * -------------------------------------------------------------------
 
     @linked_list.command()
+    async def deletion_at_beginning(self, ctx, language):
+        if language == "python":
+            ans = """# A complete working Python3 program to
+# demonstrate deletion in singly 
+# linked list with class 
+
+# Node class 
+class Node: 
+
+	# Constructor to initialize the node object 
+	def __init__(self, data): 
+		self.data = data 
+		self.next = None
+
+class LinkedList: 
+
+	# Function to initialize head 
+	def __init__(self): 
+		self.head = None
+
+	# Function to insert a new node at the beginning 
+	def push(self, new_data): 
+		new_node = Node(new_data) 
+		new_node.next = self.head 
+		self.head = new_node 
+
+	def deleteNode(self, key): 
+		temp = self.head 
+
+		if (temp is not None): 
+			if (temp.data == key): 
+				self.head = temp.next
+				temp = None
+				return
+ 
+		while(temp is not None): 
+			if temp.data == key: 
+				break
+			prev = temp 
+			temp = temp.next
+
+		if(temp == None): 
+			return
+
+		prev.next = temp.next
+
+		temp = None
+
+	def printList(self): 
+		temp = self.head 
+		while(temp): 
+			print (" %d" %(temp.data)), 
+			temp = temp.next
+
+llist = LinkedList() 
+llist.push(7) 
+llist.push(1) 
+llist.push(3) 
+llist.push(2) 
+
+print ("Created Linked List: ")
+llist.printList() 
+llist.deleteNode(1) 
+print ("Linked List after Deletion of 1:")
+llist.printList() 
+"""
+
+        if(language == "cpp" or language == "c++"):
+            ans = """#include<iostream>
+using namespace std;
+int main(){
+class node{
+   public:
+      int data;
+      node*next;
+      node(int d){
+         data=d;
+         node*next=NULL;
+      }
+};
+void insertAtFirstNode(node*&head, int data){
+   node*n= new node(data);
+   n->next= head;
+   head=n;
+}
+void print(node*head){
+   while(head!=NULL){
+      cout<<head->data<<"->";
+      head=head->next;
+   }
+   cout<<endl;
+}
+void deleteAtFirst(node*&head){
+   if(head==NULL){
+      return;
+   }
+   node*temp=head;
+   head= head->next;
+   delete temp;
+   return;
+}
+int main(){
+   node*head= NULL;
+   insertAtFirstNode(head,1);
+   insertAtFirstNode(head,2);
+   insertAtFirstNode(head,3);
+   insertAtFirstNode(head,4);
+   deleteAtFirst(head);
+   print(head);
+}"""
+        
+        await ctx.send(f"```{ans}```")
+
+# * -------------------------------------------------------------------
+
+    @linked_list.command()
+    async def deletion_at_end(self, ctx, language):
+        if language == "python":
+            ans = """class Node:  
+    def __init__(self,data):  
+        self.data = data;  
+        self.next = None;  
+          
+class DeleteEnd:   
+    def __init__(self):  
+        self.head = None;  
+        self.tail = None;  
+
+    def addNode(self, data):    
+        newNode = Node(data);  
+          
+        if(self.head == None):  
+            self.head = newNode;  
+            self.tail = newNode;  
+        else:  
+            self.tail.next = newNode;   
+            self.tail = newNode;  
+               
+    def deleteFromEnd(self):  
+        if(self.head == None):  
+            print("List is empty");  
+            return;  
+        else:  
+            if(self.head != self.tail):  
+                current = self.head;  
+                while(current.next != self.tail):  
+                    current = current.next;   
+                self.tail = current;  
+                self.tail.next = None;  
+                  
+            else:  
+                self.head = self.tail = None;  
+                  
+    #display() will display all the nodes present in the list  
+    def display(self):    
+        current = self.head;  
+        if(self.head == None):  
+            print("List is empty");  
+            return;  
+        while(current != None):  
+            #Prints each node by incrementing pointer  
+            print(current.data),  
+            current = current.next;  
+   
+sList = DeleteEnd();  
+   
+#Adds data to the list  
+sList.addNode(1);  
+sList.addNode(2);  
+sList.addNode(3);  
+sList.addNode(4);  
+   
+print("Original List: ");  
+sList.display();  
+   
+while(sList.head != None):  
+    sList.deleteFromEnd();   
+    print("Updated List: ");  
+    sList.display();  """
+
+        if(language == "cpp" or language == "c++"):
+            ans = """#include<iostream>
+using namespace std;
+class node{
+   public:
+   int data;
+   node*next;
+   node(int d){
+      data=d;
+      node*next= NULL;
+   }
+};
+void insertAtFirst(node*&head, int data){
+   node*n= new node(data);
+   n->next= head;
+   head=n;
+}
+void printNode(node*head){
+   while(head!=NULL){
+      cout<<head->data<<"->";
+      head=head->next;
+   }
+   cout<<endl;
+}
+void deleteatTail(node*head){
+   node*prev= NULL;
+   node*temp= head;
+   while(temp->next!=NULL){
+      prev= temp;
+      temp=temp->next;
+   }
+   delete temp;
+   prev->next= NULL;
+   return;
+}
+int main(){
+   node*head= NULL;
+   insertAtFirst(head,5);
+   insertAtFirst(head,4);
+   insertAtFirst(head,3);
+   insertAtFirst(head,2);
+   insertAtFirst(head,1);
+   deleteatTail(head);
+   printNode(head);
+}"""
+        
+        await ctx.send(f"```{ans}```")
+
+# * -------------------------------------------------------------------
+
+    @linked_list.command()
+    async def deletion_at_position(self, ctx, language):
+        if language == "python":
+            ans = """class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+
+    def __init__(self):
+        self.head = None
+
+    def push(self, new_data):
+        new_node = Node(new_data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def deleteNode(self, position):
+        if self.head is None:
+            return
+        if position == 0:
+            self.head = self.head.next
+            return self.head
+        index = 0
+        current = self.head
+        prev = self.head
+        temp = self.head
+        while current is not None:
+            if index == position:
+                temp = current.next
+                break
+            prev = current
+            current = current.next
+            index += 1
+        prev.next = temp
+        return prev
+
+    def printList(self):
+        temp = self.head
+        while(temp):
+            print (" %d " % (temp.data),end=" ")
+            temp = temp.next
+
+llist = LinkedList()
+llist.push(7)
+llist.push(2)
+llist.push(5)
+llist.push(1)
+
+print ("Created Linked List: ")
+llist.printList()
+llist.deleteNode(2)
+print ("\nLinked List after Deletion at position 4: ")
+llist.printList()"""
+
+        if(language == "cpp" or language == "c++"):
+            ans = """#include <bits/stdc++.h>
+using namespace std;
+struct Node {
+   int data;
+   struct Node *next;
+};
+void insertNode(struct Node** head_ref, int new_data) {
+   struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+   new_node->data = new_data;
+   new_node->next = (*head_ref);
+   (*head_ref) = new_node;
+}
+void deleteNode(struct Node **head_ref, int position) {
+   if (*head_ref == NULL) {
+      return;
+   }
+   struct Node* temp = *head_ref;
+   if (position == 1) {
+      *head_ref = temp->next;
+      free(temp);
+      return;
+   }
+   for (int i = 2; temp != NULL && i < position - 1; i++) {
+      temp = temp->next;
+   }
+   if (temp == NULL || temp->next == NULL) {
+      return;
+   }
+   struct Node *next = temp->next->next;
+   free(temp->next);
+   temp->next = next;
+}
+void printLinkedList(struct Node *node) {
+   while (node != NULL) {
+      cout << node->data << "->";
+      node = node->next;
+   }
+}
+int main() {
+   struct Node* head = NULL;
+   insertNode(&head, 1);
+   insertNode(&head, 2);
+   insertNode(&head, 3);
+   insertNode(&head, 4);
+   insertNode(&head, 5);
+   cout << "Linked list before deletion:" << endl;
+   printLinkedList(head);
+   deleteNode(&head, 1);
+   cout << "\nLinked list after deletion:" << endl;
+   printLinkedList(head);
+   return 0;
+}"""
+        
+        await ctx.send(f"```{ans}```")
+
+# * -------------------------------------------------------------------
+
+    @linked_list.command()
     async def reversal_code(self, ctx, language):
         if language == "python":
             ans = """class Node:

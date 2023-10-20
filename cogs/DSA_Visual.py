@@ -1165,13 +1165,18 @@ If a Queue is empty then it is said to be in an underflow condition
             
             {
                 "title": "Top/Peek Operation",
-                "description": """""",
-                "image_file": ""
+                "description": """The peek() method returns the object at the top of the current queue, without removing it. If the queue is empty this method returns null.""",
+                "image_file": "https://i.imgur.com/1JU5SxB.png"
             },
             
             {
                 "title": "IsEmpty Operation",
-                "description": """""",
+                "description": """This operation returns a boolean value that indicates whether the queue is empty or not.
+
+The following steps are taken to perform the Empty operation:
+
+    • check if front value is equal to -1 or not, if yes then return true means queue is empty.
+    • Otherwise return false, means queue is not empty""",
                 "image_file": ""
             }
         ]
@@ -1193,7 +1198,7 @@ If a Queue is empty then it is said to be in an underflow condition
         message = await pages.start(ctx)
         
         
-        
+                
                 
 async def setup(bot):
     await bot.add_cog(DSA_visualizer(bot))

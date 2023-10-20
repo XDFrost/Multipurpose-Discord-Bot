@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 
 
+
 col = discord.Color.purple()
 
 async def is_owner(ctx):
@@ -12,7 +13,6 @@ async def is_owner(ctx):
 class Miscellaneous(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
         
     @commands.command ()
     async def invite(self, ctx):
@@ -80,6 +80,7 @@ class Miscellaneous(commands.Cog):
         except commands.ExtensionNotLoaded:
             await ctx.send(f"```Cog not loaded: {cog}```")
 
+        
 # * -------------------------------------------------------------------   
 
     # Error handling for load and unload

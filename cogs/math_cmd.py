@@ -1,6 +1,7 @@
 import numpy as np
 import discord
 from discord.ext import commands
+import statistics
 
 
 col = discord.Color.purple()
@@ -74,6 +75,72 @@ class Maths(commands.Cog):
         embed = discord.Embed(
             colour=col,
             title=f"Here's the output after exponentiation: ```{pow(num1, num2)}```"
+        )
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)       
+         
+    # * -------------------------------------------------------------------   
+            
+    @math.command ()
+    async def mean(self, ctx, *num : int):        
+        embed = discord.Embed(
+            colour=col,
+            title=f"Here's the mean of given terms: ```{statistics.mean(num)}```"
+        )
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)        
+
+    # * -------------------------------------------------------------------   
+            
+    @math.command ()
+    async def harmonic_mean(self, ctx, *num : int):        
+        embed = discord.Embed(
+            colour=col,
+            title=f"Here's the harmonic mean of given terms: ```{statistics.harmonic_mean(num)}```"
+        )
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)        
+
+    # * -------------------------------------------------------------------   
+            
+    @math.command ()
+    async def median(self, ctx, *num : int):        
+        embed = discord.Embed(
+            colour=col,
+            title=f"Here's the median of given terms: ```{statistics.median(num)}```"
+        )
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)                
+
+    # * -------------------------------------------------------------------   
+            
+    @math.command ()
+    async def mode(self, ctx, *num : int):        
+        embed = discord.Embed(
+            colour=col,
+            title=f"Here's the mode of given terms: ```{statistics.mode(num)}```"
+        )
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)        
+
+    # * -------------------------------------------------------------------   
+            
+    @math.command ()
+    async def StDev(self, ctx, *num : int):        
+        embed = discord.Embed(
+            colour=col,
+            title=f"Here's the Standard Deviation of given data: ```{statistics.stdev(num)}```"
+        )
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed = embed)        
+
+    # * -------------------------------------------------------------------   
+            
+    @math.command ()
+    async def variance(self, ctx, *num : int):        
+        embed = discord.Embed(
+            colour=col,
+            title=f"Here's the variance of given data: ```{statistics.variance(num)}```"
         )
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
         await ctx.send(embed = embed)        

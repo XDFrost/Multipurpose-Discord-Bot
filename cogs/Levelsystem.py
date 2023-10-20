@@ -68,7 +68,8 @@ class LevelSystem(commands.Cog):
         elif user is not None:
             user = user
             
-        level_card = discord.Embed(title=f"{user.name}'s Level and Experience", color = col)
+        level_card = discord.Embed(title=f"{ctx.author.display_name}'s Level and Experience", color = col)
+        level_card.set_thumbnail(url=ctx.author.display_avatar.url)
         level_card.add_field(name = "Level: ", value=self.users[str(user.id)]["Level"])
         level_card.add_field(name = "Experience: ", value=self.users[str(user.id)]["Experience"])
         level_card.set_footer(text=f"Requested by {ctx.author.name}")
