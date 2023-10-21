@@ -125,6 +125,66 @@ class Moderation(commands.Cog):
         
 # * -------------------------------------------------------------------
 
+    @commands.command()
+    @commands.has_permissions(administrator = True)
+    async def lock(self, ctx, *, reason):
+        channel = ctx.channel
+        overwrite =channel.overwrites_for(ctx.guild.default_role)
+        overwrite.send_messages = False
+        await channel.set_permissions(ctx.guild.default_role, overwrite = overwrite)
+        
+        embed = discord.Embed(
+            title="🔒 Locked",
+            color=col
+        )
+        embed.add_field(name="Reason", value=reason)
+        
+        await ctx.send(embed = embed)
+# * -------------------------------------------------------------------
+
+    @commands.command()
+    @commands.has_permissions(administrator = True)
+    async def unlock(self, ctx):
+        channel = ctx.channel
+        overwrite = channel.overwrites_for(ctx.guild.default_role)
+        overwrite.send_messages = True
+        await channel.set_permissions(ctx.guild.default_role, overwrite = overwrite)
+        
+        embed = discord.Embed(
+            title="🔓 Unlocked",
+            color=col
+        )
+                
+        await ctx.send(embed = embed)
+
+# * -------------------------------------------------------------------
+
+    @commands.command()
+    @commands.has_permissions(administrator = True)
+    async def lock_server(self, ctx):
+        guild = ctx.guild
+        channels = guild.text_channels
+            
+        for channel in channels:
+            overwrite = channel.overwrites_for(ctx.guild.default_role)
+            overwrite.view_channel = False
+            await channel.set_permissions(ctx.guild.default_role, overwrite = overwrite)
+
+# * -------------------------------------------------------------------
+
+    @commands.command()
+    @commands.has_permissions(administrator = True)
+    async def unlock_server(self, ctx):
+        guild = ctx.guild
+        channels = guild.text_channels
+            
+        for channel in channels:
+            overwrite = channel.overwrites_for(ctx.guild.default_role)
+            overwrite.view_channel = True
+            await channel.set_permissions(ctx.guild.default_role, overwrite = overwrite)
+
+# * -------------------------------------------------------------------
+
 async def setup(bot):
     await bot.add_cog(Moderation(bot))
     

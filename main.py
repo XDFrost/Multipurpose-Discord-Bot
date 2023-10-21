@@ -4,11 +4,12 @@ from discord.ext import commands
 import json
 import database
 from models.account import Account
-from cogs.economy import Economy
+from models.player_stats import Stats
 
 
 col = discord.Color.purple()
-database.db.create_tables([Account])
+database.economy_account_db.create_tables([Account])
+database.stats_db.create_tables([Stats])
 intents = discord.Intents.all()
 
 def get_server_prefix(bot, message):

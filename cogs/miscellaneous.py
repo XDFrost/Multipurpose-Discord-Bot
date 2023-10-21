@@ -45,12 +45,19 @@ class Miscellaneous(commands.Cog):
 # * -------------------------------------------------------------------   
         
     @commands.command ()
-    async def joined(self, ctx, who : discord.Member):
-        joined_at = who.joined_at.strftime("%Y-%m-%d at %H:%M")
-        embed = discord.Embed(
-            colour=col,
-            title=f"{who.display_name} joined at {joined_at}"                        # display_name displays the server name of the author not their tag name   
-        )
+    async def joined(self, ctx, who : discord.Member = None):
+        if who is None:
+            joined_at = ctx.author.joined_at.strftime("%Y-%m-%d at %H:%M")
+            embed = discord.Embed(
+                colour=col,
+                title=f"{ctx.author.display_name} joined on {joined_at}"                        # display_name displays the server name of the author not their tag name   
+            )
+        else:
+            joined_at = who.joined_at.strftime("%Y-%m-%d at %H:%M")
+            embed = discord.Embed(
+                colour=col,
+                title=f"{who.display_name} joined on {joined_at}"                        # display_name displays the server name of the author not their tag name   
+            )
         
         embed.set_author(name = ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
         

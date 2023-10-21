@@ -1,5 +1,5 @@
 import peewee                     # Used to work on a database
-from database import db
+from database import economy_account_db
 
 class Account(peewee.Model):             # Inherits from peewee model i.e. account will be represented as a single table
     user_id : str = peewee.CharField(max_length=255)
@@ -10,7 +10,7 @@ class Account(peewee.Model):             # Inherits from peewee model i.e. accou
     
     
     class Meta:
-        database = db
+        database = economy_account_db
         
     @staticmethod                     # Used to not create a instance of a class since static methods can work on a class without creating its instance
     def fetch(member):
