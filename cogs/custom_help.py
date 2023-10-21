@@ -502,6 +502,388 @@ Express your emotions on others!""",
             
 
 # * -------------------------------------------------------------------   
+
+
+        #^ Miscellaneous
+        
+        elif cmd == "invite":
+            embed = discord.Embed(
+                description="""A simple invite command to invite Logic Link to your server
+                """,
+                color=col
+            )
+            embed.set_author(name="Invite command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "invite",value = """
+                            Syntax: `!invite`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
+        elif cmd == "setprefix":
+            embed = discord.Embed(
+                description="""Use this command to set bot prefix for your server
+                """,
+                color=col
+            )
+            embed.set_author(name="Set Prefix", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "setprefix",value = """
+                            Syntax: `!setprefix {prefix}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
+        elif cmd == "joined":
+            embed = discord.Embed(
+                description="""Use this command to see when a user has joined the server
+                """,
+                color=col
+            )
+            embed.set_author(name="Joined", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "joined",value = """
+                            Syntax: `!joined {@mention_member}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
+        elif cmd == "load":
+            embed = discord.Embed(
+                description="""
+                *SPECIFIC TO ADMINS ONLY*
+                
+                Use this command to load the commands in the bot
+                """,
+                color=col
+            )
+            embed.set_author(name="Load", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "load",value = """
+                            Syntax: `!load {command_name}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
+        elif cmd == "unload":
+            embed = discord.Embed(
+                description="""
+                *SPECIFIC TO ADMINS ONLY*
+                
+                Use this command to unload the commands from the bot
+                """,
+                color=col
+            )
+            embed.set_author(name="Unload", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "unload",value = """
+                            Syntax: `!unload {command_name}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+
+# * -------------------------------------------------------------------   
+
+
+        #^ Moderation
+        
+        elif cmd == "purge":
+            embed = discord.Embed(
+                description="""Deletes the specified number of messages
+                """,
+                color=col
+            )
+            embed.set_author(name="Purge command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "purge",value = """
+                            Syntax: `!purge {amount}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "kick":
+            embed = discord.Embed(
+                description="""Kicks a user from the server
+                """,
+                color=col
+            )
+            embed.set_author(name="Kick command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "kick",value = """
+                            Syntax: `!kick {@mention_user} {reason}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "ban":
+            embed = discord.Embed(
+                description="""Bans a user from the server
+                """,
+                color=col
+            )
+            embed.set_author(name="Ban command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "ban",value = """
+                            Syntax: `!ban {@mention_user} {reason}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "unban":
+            embed = discord.Embed(
+                description="""Removes ban from a user in the server
+                """,
+                color=col
+            )
+            embed.set_author(name="Unban command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "unban",value = """
+                            Syntax: `!unban {user_id}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "setmuterole":
+            embed = discord.Embed(
+                description="""Sets a mute role in the server
+                
+                The one with mute role gets muted in the server (Both from voice and text channels)
+                """,
+                color=col
+            )
+            embed.set_author(name="Setting up mute role", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "setmuterole",value = """
+                            Syntax: `!setmuterole {role}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "mute":
+            embed = discord.Embed(
+                description="""Mutes a member in the server
+                """,
+                color=col
+            )
+            embed.set_author(name="Mute command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "mute",value = """
+                            Syntax: `!mute {@mention_user}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "unmute":
+            embed = discord.Embed(
+                description="""Unmute a member in the server
+                """,
+                color=col
+            )
+            embed.set_author(name="Unmute command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "unmute",value = """
+                            Syntax: `!unmute {@mention_user}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+
+
+# * -------------------------------------------------------------------   
+
+
+        #^ Music commands
+        
+        elif cmd == "join":
+            embed = discord.Embed(
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                On execution, bot joins the same vc as per the user
+                """,
+                color=col
+            )
+            embed.set_author(name="Join command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "join",value = """
+                            Syntax: `!join`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
+        elif cmd == "add":
+            embed = discord.Embed(
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Adds a song in the playlist
+                """,
+                color=col
+            )
+            embed.set_author(name="Adds a song", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "add",value = """
+                            Syntax: `!add {song_title}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "play":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Plays songs in the playlist in provided order
+                """,
+                color=col
+            )
+            embed.set_author(name="Plays songs in the playlist", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "play",value = """
+                            Syntax: `!play`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "List" or cmd == "q":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Lists out the song playlist
+                
+                alaises = [q]
+                """,
+                color=col
+            )
+            embed.set_author(name="Viewing Playlist", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "List",value = """
+                            Syntax: `!{List | q}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "skip":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Skips out a song from the playlist
+                """,
+                color=col
+            )
+            embed.set_author(name="Skipping a song", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "skip",value = """
+                            Syntax: `!skip`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "pause":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Pauses the current song
+                """,
+                color=col
+            )
+            embed.set_author(name="Pause the song", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "pause",value = """
+                            Syntax: `!pause`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "resume":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Resumes the paused song
+                """,
+                color=col
+            )
+            embed.set_author(name="Resume the song", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "resume",value = """
+                            Syntax: `!resume`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "stop":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Stops the song and clears the playlist
+                """,
+                color=col
+            )
+            embed.set_author(name="Stop the music player", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "stop",value = """
+                            Syntax: `!stop`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "ff":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Fast-forward the current song
+                """,
+                color=col
+            )
+            embed.set_author(name="Fast-Forward", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "ff",value = """
+                            Syntax: `!ff {seconds}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "bw":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Backwards the current song
+                """,
+                color=col
+            )
+            embed.set_author(name="backwards", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "bw",value = """
+                            Syntax: `!bw {seconds}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+             
+        
+        elif cmd == "volume" or cmd == "vol":
+            embed = discord.Embed( 
+                description="""
+                **User needs to be in vc in order to use this command**
+                
+                Provide a volume value between 0 to 100
+                
+                alaises = [vol]
+                """,
+                color=col
+            )
+            embed.set_author(name="Volume", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "volume",value = """
+                            Syntax: `!{volume | vol} {value}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+
+
+# * -------------------------------------------------------------------   
         
         else:
             embed = discord.Embed(
