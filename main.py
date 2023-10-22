@@ -5,11 +5,15 @@ import json
 import database
 from models.account import Account
 from models.player_stats import Stats
+from models.server_rank import server_rank
 
 
 col = discord.Color.purple()
+
 database.economy_account_db.create_tables([Account])
 database.stats_db.create_tables([Stats])
+database.server_rank_db.create_tables([server_rank])
+
 intents = discord.Intents.all()
 
 def get_server_prefix(bot, message):

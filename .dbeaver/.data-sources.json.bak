@@ -13,6 +13,19 @@
 				"type": "dev",
 				"auth-model": "native"
 			}
+		},
+		"sqlite_jdbc-18b51ef281f-9e90f90cd7524f8": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "economy.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Discord Bot (PYTHON)\\economy.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Discord Bot (PYTHON)\\economy.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
 		}
 	},
 	"connection-types": {
