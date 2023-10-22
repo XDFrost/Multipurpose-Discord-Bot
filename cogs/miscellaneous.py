@@ -89,6 +89,32 @@ class Miscellaneous(commands.Cog):
 
         
 # * -------------------------------------------------------------------   
+       
+    @commands.command(aliases = ["user", "stats"])
+    async def userinfo(self, ctx, member: discord.Member=None):
+        if member is None:
+            member = ctx.author
+        elif member is not None:
+            member = member
+            
+        embed = discord.Embed(
+            title=f"{member.display_name}'s User Information",
+            description="All info about the user",
+            color=col
+        )
+        embed.set_author(name="User Info", icon_url=ctx.author.display_avatar.url)
+        embed.set_thumbnail(url=member.display_avatar)
+        embed.add_field(name="Name", value=member.name, inline=False)
+        embed.add_field(name="Nick Name", value=member.display_name, inline=False)
+        embed.add_field(name="ID", value=member.id, inline=False)
+        embed.add_field(name="Top Role", value=member.top_role, inline=False)
+        embed.add_field(name="Status", value=member.status, inline=False)
+        embed.add_field(name="Bot User", value=member.bot, inline=False)
+        embed.add_field(name="ID Creation", value=member.created_at.__format__("%A, %d. %B %Y at %H:%M:%S"), inline=False)               # A is day of week; d is day; B is month
+        
+        await ctx.send(embed=embed)
+        
+# * -------------------------------------------------------------------   
 
     # Error handling for load and unload
     @load.error

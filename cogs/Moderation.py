@@ -2,6 +2,7 @@ import discord
 import asyncio
 from discord.ext import commands
 import json
+from models.warn_system import Warn_system
 
 
 col = discord.Color.purple()
@@ -9,7 +10,7 @@ timeout = 10
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
+        self.bot = bot            
         
 # * -------------------------------------------------------------------
 
@@ -182,6 +183,93 @@ class Moderation(commands.Cog):
             overwrite = channel.overwrites_for(ctx.guild.default_role)
             overwrite.view_channel = True
             await channel.set_permissions(ctx.guild.default_role, overwrite = overwrite)
+
+# * -------------------------------------------------------------------
+
+    @commands.command()
+    @commands.has_permissions(administrator = True)
+    async def warn(self, ctx, member: discord.Member, reason):
+        account = Warn_system.fetch(ctx.author)
+        account.warns+=1
+        account.save()
+        
+        if int(account.warns) < 5:
+            embed = discord.Embed(
+                title="Warning!",
+                description=f"{member.display_name} has been warned by {ctx.author}",
+                color=col
+            )
+            embed.set_author(name="Warning", icon_url=ctx.author.display_avatar.url)
+            embed.add_field(name="Reason", value=reason, inline=False)
+            embed.add_field(name="Total warns", value=account.warns, inline=False)
+        
+        else:
+            await ctx.guild.kick(member)
+            embed = discord.Embed(
+                title="Warning Limit Reached!",
+                description=f"{member.display_name}'s warn limit has been reached and now has been kicked out of the server!"
+            )
+            embed.set_author(name="Warning", icon_url=ctx.author.display_avatar.url)
+            account.warns = 0
+            account.save()
+        
+        
+        await ctx.send(embed = embed)
+
+# * -------------------------------------------------------------------
+
+    @commands.command(aliases = ["rw"])
+    @commands.has_permissions(administrator = True)
+    async def remove_warn(self, ctx, member: discord.Member, amount = 0):
+        account = Warn_system.fetch(ctx.author)
+        
+        if amount == 0:
+            account.warns = 0
+            account.save()
+            embed = discord.Embed(
+                title="Removed all warns!",
+                description=f"{member.display_name}'s warns have been removed",
+                color=col
+            )
+            embed.set_author(name="Warns Removed", icon_url=ctx.author.display_avatar.url)
+            embed.add_field(name="Total warns", value=account.warns, inline=False)
+        
+        elif amount>account.warns:
+            embed = discord.Embed(
+                title="Amount provided is greater than warns",
+                color=discord.Color.red()
+            )
+            embed.set_author(name="Amount error", icon_url=ctx.author.display_avatar.url)
+            
+        else:
+            account.warns -= amount
+            account.save()
+            embed = discord.Embed(
+                title=f"Removed {amount} warn(s)!",
+                description=f"{member.display_name}'s warns have been removed",
+                color=col
+            )
+            embed.set_author(name="Warns Removed", icon_url=ctx.author.display_avatar.url)
+            embed.add_field(name="Total warns left", value=account.warns, inline=False)
+
+        
+        await ctx.send(embed = embed)
+
+# * -------------------------------------------------------------------
+
+    @commands.command(aliases = ["vw"])
+    @commands.has_permissions(administrator = True)
+    async def view_warns(self, ctx, member: discord.Member):
+        account = Warn_system.fetch(ctx.author)
+
+        embed = discord.Embed(
+            title=f"{member.display_name}'s Warns",
+            color=col
+        )
+        embed.set_author(name="Warns", icon_url=ctx.author.display_avatar.url)
+        embed.add_field(name="Total warns left", value=account.warns, inline=False)
+        
+        await ctx.send(embed = embed)
 
 # * -------------------------------------------------------------------
 

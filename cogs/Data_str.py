@@ -1478,8 +1478,8 @@ int main() {
 
     @commands.group()
     async def stack(self, ctx):
-        if ctx.invoked_subcommand is None: 
-             await ctx.send(f"```{ctx.subcommand_passed} doesn't belong to stack\n\nFor more info on a specific command, use {'*help*'} command```")   
+        if ctx.invoked_subcommand is None:
+            await ctx.send(f"```{ctx.subcommand_passed} doesn't belong to stack\n\nFor more info on a specific command, use {'*help*'} command```")
 
 # * -------------------------------------------------------------------
 
@@ -1530,6 +1530,7 @@ if __name__ == "__main__":
     print("Is the stack empty?", stack.is_empty())
     print("Stack size:", stack.size())
 """
+        
         if(language == "cpp" or language == "c++"):
             ans = """#include <iostream>
 using namespace std;
@@ -1607,10 +1608,10 @@ int main() {
 """
             
         await ctx.send(f"```{ans}```")
-
+            
 # * -------------------------------------------------------------------
 
-    @stack.command() 
+    @stack.command()
     async def reverse(self, ctx, language):
         if(language == "python"):
             ans = """class Stack:
@@ -1678,9 +1679,9 @@ if __name__ == "__main__":
 
     print("Reversed Stack:", stack.items)
 """
-        
+
         if(language == "cpp" or language == "c++"):
-            ans = """#include <iostream>
+            ans = """include <iostream>
 using namespace std;
 
 int *Stack;  // Dynamic stack array
@@ -1783,7 +1784,7 @@ int main() {
     return 0;
 }
 """
-
+        
         await ctx.send(f"```{ans}```")
 
 # * -------------------------------------------------------------------

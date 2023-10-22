@@ -26,6 +26,19 @@
 				"type": "dev",
 				"auth-model": "native"
 			}
+		},
+		"sqlite_jdbc-18b5747d619-285a4edfe2e49a08": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "Server_rank.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Discord Bot (PYTHON)\\Server_rank.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Discord Bot (PYTHON)\\Server_rank.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
 		}
 	},
 	"connection-types": {

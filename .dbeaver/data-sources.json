@@ -39,6 +39,19 @@
 				"type": "dev",
 				"auth-model": "native"
 			}
+		},
+		"sqlite_jdbc-18b57bb8a32-646f210271d7d211": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "warn_system.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Discord Bot (PYTHON)\\warn_system.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Discord Bot (PYTHON)\\warn_system.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
 		}
 	},
 	"connection-types": {

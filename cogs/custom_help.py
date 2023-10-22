@@ -548,6 +548,22 @@ Express your emotions on others!""",
             await ctx.send(embed = embed)
             
         
+        elif cmd == "userinfo" or cmd == "user" or cmd == "stats":
+            embed = discord.Embed(
+                description="""Use this command to see the info about a user
+                
+                aliases = user, stats
+                """,
+                color=col
+            )
+            embed.set_author(name="User-info", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "userinfo",value = """
+                        Syntax: `!{userinfo | user | stats} {@mention_member}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
         elif cmd == "load":
             embed = discord.Embed(
                 description="""
@@ -597,6 +613,58 @@ Express your emotions on others!""",
             
             embed.add_field(name = "purge",value = """
                             Syntax: `!purge {amount}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "warn":
+            embed = discord.Embed(
+                description="""Warns a user in the server
+                
+                After 5 warns, targeted member will be kicked out of the server
+                
+                A reason is necessary
+                """,
+                color=col
+            )
+            embed.set_author(name="Warn command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "warn",value = """
+                            Syntax: `!warn {@member} {reason}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "remove_warn" or cmd == "rw":
+            embed = discord.Embed(
+                description="""Removes a user's warn in the server
+                
+                If amount is not given: All warns will be removed
+                
+                aliases = rw
+                """,
+                color=col
+            )
+            embed.set_author(name="Remove warn command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "remove_warn",value = """
+                            Syntax: `!{remove_warn | rw} {@member} {amount}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "view_warns" or cmd == "vw":
+            embed = discord.Embed(
+                description="""Used to check the number of warns
+                
+                After 5 warns, targeted member will be kicked out of the server
+                """,
+                color=col
+            )
+            embed.set_author(name="View warn command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "view_warms",value = """
+                            Syntax: `!{view_warns | vw} {@member}`""", inline=False)
             
             await ctx.send(embed = embed)
         
