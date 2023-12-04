@@ -23,6 +23,7 @@ def get_server_prefix(bot, message):
             prefix = json.load(f)
         return prefix[str(message.guild.id)]
 
+
 bot = commands.Bot(command_prefix=get_server_prefix, intents=intents)
 bot.remove_command("help")
 
@@ -33,7 +34,7 @@ bot.remove_command("help")
 # Handling error            
 @bot.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):                                # isinstance checks if the error is caused by the provided reason or not
+    if isinstance(error, commands.MissingRequiredArgument):                                # isinstance checks if the error is caused by the provided reason or not; isinstance is used to check if given value is originating from provided package item or is originating as an instance of provided package item
         await ctx.send(f"```Error: Arguments are not provided \n\nFor more info on a specific command, use {'*help*'} command```")
     elif isinstance(error, commands.CommandOnCooldown):
         remaining_time = divmod(error.retry_after, 3600)                  # retry_after contains the remaining time in seconds that we are getting in hours by dividing them by 3600
@@ -67,9 +68,8 @@ async def on_ready():
         if cmd_file != "__init__.py":
             await bot.load_extension(f"cogs.{cmd_file.stem}")                     # .stem provides file name without extension
     await bot.tree.sync()                                                         # Used to add slash commands 
-    
-    
-# * -------------------------------------------------------------------   
+
+
 # * -------------------------------------------------------------------   
 
 
@@ -79,7 +79,7 @@ async def on_ready():
         with open("cogs/json/prefixes.json", "r") as f:
             prefix = json.load(f)
         prefix[str(guild.id)] = "!"
-        with open("prefixes.json", "w") as f:
+        with open("cogs/json/prefixes.json", "w") as f:
             json.dump(prefix, f, indent = 4)
 # * -------------------------------------------------------------------   
         with open("cogs/json/mutes.json", "r") as f:

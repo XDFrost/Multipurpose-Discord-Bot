@@ -23,10 +23,11 @@ class Music(commands.Cog):
             # bot = self.bot,
             # host = "localhost",
             # port = 2333,           # Default port
-            uri="https://localhost:2333",
-            password = "Logic_Link"
+            uri="localhost:2333",
+            password = "Logic_Link",
+            
         )
-       await wavelink.NodePool.connect(client=self.bot, nodes=[node])
+       await wavelink.NodePool.connect(client=self.bot, nodes=[node])          # Connects to the LavaLink Server
 
 # * -------------------------------------------------------------------   
 
