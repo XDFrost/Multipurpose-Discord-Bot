@@ -10,9 +10,7 @@
 3. [Getting Started](#getting-started)
 4. [Installation](#installation)
 5. [Usage](#usage)
-6. [Configuration](#configuration)
-7. [Contributing](#contributing)
-8. [License](#license)
+6. [Contributing](#contributing)
 
 ---
 
@@ -45,8 +43,8 @@ Before you get started with Logic Link, make sure you have the following prerequ
 - [Discord.py](https://github.com/Rapptz/discord.py)
 - [Wavelink](https://github.com/PythonistaGuild/Wavelink)
 - [Lavalink](https://github.com/Frederikam/Lavalink)
-- Docker Desktop
-- SQLite Database
+- [Docker Desktop](https://dbeaver.io/download/)
+- [SQLite Database](https://www.docker.com/products/docker-desktop/)
 
 ---
 
@@ -62,17 +60,9 @@ To install Logic Link, follow these steps:
 
 2. Install the required Python packages.
 
-   ```shell
-   pip install -r requirements.txt
-   ```
-
-3. Configure the bot according to your server's needs (see [Configuration](#configuration)).
+3. Configure the bot according to your server's needs.
 
 4. Start the bot.
-
-   ```shell
-   python logiclink.py
-   ```
 
 ---
 
@@ -85,14 +75,6 @@ Here are some common use cases for Logic Link:
 - **Enjoy Music:** Stream high-quality music using the built-in music system.
 - **Learn and Educate:** Use the DSA helper and static DSA visualizer for educational purposes.
 - **Have Fun:** Engage your community with mini-games and entertainment features.
-
-For in-depth usage details, consult the [User Guide](docs/user-guide.md).
-
----
-
-## Configuration
-
-Logic Link offers extensive configuration options to customize the bot's behavior and settings. To configure the bot for your server, consult the [Configuration Guide](docs/configuration.md).
 
 ---
 
