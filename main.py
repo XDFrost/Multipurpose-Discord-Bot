@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import json
 import database
+import openai
 from models.account import Account
 from models.player_stats import Stats
 from models.server_rank import server_rank
@@ -34,7 +35,14 @@ bot.remove_command("help")
 # Handling error            
 @bot.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):                                # isinstance checks if the error is caused by the provided reason or not; isinstance is used to check if given value is originating from provided package item or is originating as an instance of provided package item
+    if isinstance(error, openai.RateLimitError):                             # isinstance checks if the error is caused by the provided reason or not; isinstance is used to check if given value is originating from provided package item or is originating as an instance of provided package item
+        embed = discord.Embed(
+            title="Rate limit exceeded!",
+            description="Usage of time command is limited to 1 person at a time",
+            color=col
+        )
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):                                # isinstance checks if the error is caused by the provided reason or not; isinstance is used to check if given value is originating from provided package item or is originating as an instance of provided package item
         await ctx.send(f"```Error: Arguments are not provided \n\nFor more info on a specific command, use {'*help*'} command```")
     elif isinstance(error, commands.CommandOnCooldown):
         remaining_time = divmod(error.retry_after, 3600)                  # retry_after contains the remaining time in seconds that we are getting in hours by dividing them by 3600

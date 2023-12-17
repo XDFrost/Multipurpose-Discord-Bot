@@ -1007,6 +1007,57 @@ Express your emotions on others!""",
             await ctx.send(embed = embed)
 
 
+# * ------------------------------------------------------------------- 
+
+        #^ GPT_commands
+        
+        elif cmd == "chat":
+            embed = discord.Embed(
+                description="""                
+                Friendly chat with the bot
+                """,
+                color=col
+            )
+            embed.set_author(name="Chat command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "chat",value = """
+                            Syntax: `!chat {prompt}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+            
+        
+        elif cmd == "explain":
+            embed = discord.Embed(
+                description="""                
+                Explain a topic
+                """,
+                color=col
+            )
+            embed.set_author(name="Explain command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "Explain",value = """
+                            Syntax: `!explain {prompt}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+        
+        
+        elif cmd == "generate":
+            embed = discord.Embed(
+                description="""                
+                Image generation from text
+                
+                Can only be used twice per minute
+                """,
+                color=col
+            )
+            embed.set_author(name="Generate command", icon_url=ctx.author.display_avatar.url)
+            
+            embed.add_field(name = "generate",value = """
+                            Syntax: `!generate {prompt}`""", inline=False)
+            
+            await ctx.send(embed = embed)
+
+  
 # * -------------------------------------------------------------------   
         
         else:
@@ -1018,7 +1069,6 @@ Express your emotions on others!""",
             embed.set_author(name="Invalid", icon_url=ctx.author.display_avatar.url)
             
             await ctx.send(embed = embed)
-
 
 # * -------------------------------------------------------------------   
 # * -------------------------------------------------------------------   

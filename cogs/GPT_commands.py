@@ -1,16 +1,16 @@
 import discord
 from discord.ext import commands
 import openai
-from settings import DISCORD_API_TOKEN
+from settings import api_key
 
 
 col = discord.Color.purple()
-client = openai.OpenAI(api_key=DISCORD_API_TOKEN)
+client = openai.OpenAI(api_key=api_key)
 
 class GPT_commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        openai.api_key = DISCORD_API_TOKEN
+        openai.api_key = api_key
                 
 # * -------------------------------------------------------------------
 
@@ -19,11 +19,20 @@ class GPT_commands(commands.Cog):
         
         chatstr = f"{message}"
         
+        embedx = discord.Embed(
+            title="Generating text...",
+            color=col
+        )
+        
+        dele = await ctx.send(embed=embedx)
+        
         response = client.chat.completions.create(                               
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": f"{chatstr}"}],
             temperature=0
         )
+        
+        await dele.delete()
         
         embed = discord.Embed(
             title=f"{ctx.author.display_name}: {chatstr}",
@@ -40,11 +49,20 @@ class GPT_commands(commands.Cog):
         
         chatstr = f"{message}"
         
+        embedx = discord.Embed(
+            title=f"Generating text...",
+            color=col
+        )
+        
+        dele = await ctx.send(embed=embedx)
+        
         response = client.chat.completions.create(                               
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": f"Explain {chatstr}"}],
             temperature=0
         )
+        
+        await dele.delete()
         
         embed = discord.Embed(
             title=f"{ctx.author.display_name}: {chatstr}",
@@ -61,6 +79,13 @@ class GPT_commands(commands.Cog):
         
         chatstr = f"{message}"
         
+        embedx = discord.Embed(
+            title=f"Generating image...",
+            color=col
+        )
+        
+        dele = await ctx.send(embed=embedx)
+        
         response = client.images.generate(
             model="dall-e-3",
             prompt=f"{chatstr}",
@@ -68,6 +93,8 @@ class GPT_commands(commands.Cog):
             quality="standard",
             n=1,
         )
+        
+        await dele.delete()
         
         embed = discord.Embed(
             title=f"{ctx.author.display_name}: {chatstr}",
