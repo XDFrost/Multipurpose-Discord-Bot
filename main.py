@@ -114,9 +114,12 @@ async def on_ready():
             mute_role = json.load(f)
             mute_role.pop(str(guild.id))
         with open("cogs/json/mutes.json", "w") as f:
-            json.dump(mute_role, f, indent = 4)
-            
-            
+            json.dump(mute_role, f, indent = 4)         
+# * -------------------------------------------------------------------
+
+        
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(name="!help"))
+    
 # * -------------------------------------------------------------------
 # * -------------------------------------------------------------------
 
