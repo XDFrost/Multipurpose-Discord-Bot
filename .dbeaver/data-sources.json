@@ -1,0 +1,71 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-18cac6165cf-1f23d094107a4b0": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "warn_system.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Completed\\Discord Bot (PYTHON)\\warn_system.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Completed\\Discord Bot (PYTHON)\\warn_system.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-18cac62ce41-49c1f566724db66": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "Server_rank.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Completed\\Discord Bot (PYTHON)\\Server_rank.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Completed\\Discord Bot (PYTHON)\\Server_rank.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-18cac632df1-4bc2218b624fad0f": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "Player_stats.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Completed\\Discord Bot (PYTHON)\\Player_stats.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Completed\\Discord Bot (PYTHON)\\Player_stats.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-18cac63528c-66e748c115c04a2": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "economy.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Completed\\Discord Bot (PYTHON)\\economy.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Completed\\Discord Bot (PYTHON)\\economy.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": false,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800
+		}
+	}
+}

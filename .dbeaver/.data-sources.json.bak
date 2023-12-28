@@ -1,0 +1,32 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-18cac6165cf-1f23d094107a4b0": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "warn_system.db",
+			"save-password": true,
+			"configuration": {
+				"database": "D:\\Projects\\Completed\\Discord Bot (PYTHON)\\warn_system.db",
+				"url": "jdbc:sqlite:D:\\Projects\\Completed\\Discord Bot (PYTHON)\\warn_system.db",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": false,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800
+		}
+	}
+}
