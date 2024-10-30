@@ -55,7 +55,7 @@ To install Logic Link, follow these steps:
 1. Clone the Logic Link repository to your local machine.
 
    ```shell
-   git clone https://github.com/XDFrost/LogicLink.git
+   git clone https://github.com/XDFrost/Multipurpose-Discord-Bot.git
    ```
 
 2. Install the required Python packages.
